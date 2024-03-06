@@ -4,11 +4,6 @@ description: >
 branding:
   icon: check
   color: green
-runs:
-  using: docker
-  image: Dockerfile
-  entrypoint: "/entrypoint.sh"
-  post-entrypoint: "/cleanup.sh"
 inputs:
   args:
     description: Additional arguments to the sonar-scanner
@@ -17,3 +12,13 @@ inputs:
     description: Set the sonar.projectBaseDir analysis property
     required: false
     default: .
+  base_image:
+    required: false
+    description: 'Provide a base image of sonarsource/sonar-scanner-cli that is hosted on your own registry'
+runs:
+  using: docker
+  image: Dockerfile
+  args: 
+    - ${{ inputs.base_image }}
+  entrypoint: "/entrypoint.sh"
+  post-entrypoint: "/cleanup.sh"
