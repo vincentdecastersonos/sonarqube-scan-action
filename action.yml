@@ -1,4 +1,4 @@
-name: Official SonarQube Scan
+name: Forked from official SonarQube Scan
 description: >
   Scan your code with SonarQube to detect Bugs, Vulnerabilities and Code Smells in up to 27 programming languages!
 branding:
@@ -7,6 +7,8 @@ branding:
 runs:
   using: docker
   image: Dockerfile
+  args: 
+    - ${{ inputs.baseImage }}
   entrypoint: "/entrypoint.sh"
   post-entrypoint: "/cleanup.sh"
 inputs:
@@ -17,3 +19,7 @@ inputs:
     description: Set the sonar.projectBaseDir analysis property
     required: false
     default: .
+  baseImage:
+    required: false
+    description: 'Provide a base image of sonarsource/sonar-scanner-cli that is hosted on your own registry'
+ 
