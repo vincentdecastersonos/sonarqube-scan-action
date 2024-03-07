@@ -15,7 +15,10 @@ inputs:
   base_image:
     required: false
     description: 'Provide a base image of sonarsource/sonar-scanner-cli that is hosted on your own registry'
-
+  docker_username:
+    required: false
+  docker_password:
+    required: false
 runs:
   using: docker
   image: Dockerfile
@@ -23,4 +26,6 @@ runs:
     - ${{ inputs.base_image }}
   entrypoint: "/entrypoint.sh"
   post-entrypoint: "/cleanup.sh"
-
+  credentials: 
+    username: ${{ inputs.docker_username }}
+    password: ${{ inputs.docker_password }}
