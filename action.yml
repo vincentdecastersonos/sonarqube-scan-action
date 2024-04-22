@@ -27,7 +27,7 @@ inputs:
   projectBaseDir:
     description: Set the sonar.projectBaseDir analysis property
     required: false
-    default: .
+    default: ../
   baseImage:
     required: false
     description: 'Provide a base image of sonarsource/sonar-scanner-cli that is hosted on your own registry'
