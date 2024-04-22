@@ -22,7 +22,7 @@ runs:
       shell: bash
       working-directory: sonarqube-scan-action
     - name: Run Docker Image
-      run: docker run --entrypoint /entrypoint.sh custom-image /cleanup.sh
+      run: docker run -e SONAR_HOST_URL -e SONAR_TOKEN custom-image /cleanup.sh
       shell: bash
       working-directory: sonarqube-scan-action
 
