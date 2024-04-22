@@ -13,16 +13,12 @@ runs:
           repository: 'VincentDeCasterSonos/sonarqube-scan-action'
           ref: 'image-change' 
           path: 'sonarqube-scan-action'
-    - name: List directory contents
-      run: ls -la
-      shell: bash
-      working-directory: sonarqube-scan-action
     - name: Build Docker Image
       run: docker build --build-arg INPUT_BASEIMAGE=${{ inputs.baseImage }} -t custom-image .
       shell: bash
       working-directory: sonarqube-scan-action
     - name: Run Docker Image
-      run: docker run -e SONAR_HOST_URL -e SONAR_TOKEN custom-image /cleanup.sh
+      run: docker run -e SONAR_HOST_URL -e SONAR_TOKEN -e INPUT_ARGS=${{ inputs.args }} -e INPUT_PROJECTBASEDIR=${{ inputs.projectBaseDir }} custom-image /cleanup.sh
       shell: bash
       working-directory: sonarqube-scan-action
 
