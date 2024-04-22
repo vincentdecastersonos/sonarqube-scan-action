@@ -17,7 +17,7 @@ runs:
       run: docker build --build-arg INPUT_BASEIMAGE=${{ inputs.baseImage }} -t custom-image -f sonarqube-scan-action/Dockerfile .
       shell: bash
     - name: Run Docker Image
-      run: docker run -e SONAR_HOST_URL -e SONAR_TOKEN -e INPUT_ARGS="${{ inputs.args }}" -e INPUT_PROJECTBASEDIR="${{ inputs.projectBaseDir }}" custom-image sonarqube-scan-action/cleanup.sh
+      run: docker run -e SONAR_HOST_URL -e SONAR_TOKEN -e INPUT_ARGS="${{ inputs.args }}" -e INPUT_PROJECTBASEDIR="${{ inputs.projectBaseDir }}" custom-image /sonarqube-scan-action/cleanup.sh
       shell: bash
 inputs:
   args:
