@@ -31,6 +31,6 @@ if [[ -f "${INPUT_PROJECTBASEDIR%/}build.gradle" ]]; then
 fi
 
 unset JAVA_HOME
-
+echo "-Dsonar.projectBaseDir=${INPUT_PROJECTBASEDIR} ${INPUT_ARGS}"
 sonar-scanner -Dsonar.projectBaseDir=${INPUT_PROJECTBASEDIR} ${INPUT_ARGS}
 
