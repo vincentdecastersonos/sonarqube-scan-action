@@ -18,7 +18,7 @@ runs:
       shell: bash
       working-directory: sonarqube-scan-action
     - name: Run Docker Image
-      run: docker run -e SONAR_HOST_URL -e SONAR_TOKEN -e INPUT_ARGS="${{ inputs.args }}" -e INPUT_PROJECTBASEDIR="${{ inputs.projectBaseDir }}" custom-image /sonarqube-scan-action/cleanup.sh
+      run: docker run -e SONAR_HOST_URL -e SONAR_TOKEN -e INPUT_ARGS="${{ inputs.args }}" -e INPUT_PROJECTBASEDIR="${{ inputs.projectBaseDir }}" -v ${{ github.workspace }}:/workspace custom-image /sonarqube-scan-action/cleanup.sh
       shell: bash
 inputs:
   args:
@@ -27,7 +27,7 @@ inputs:
   projectBaseDir:
     description: Set the sonar.projectBaseDir analysis property
     required: false
-    default: ../
+    default: ./workspace
   baseImage:
     required: false
     description: 'Provide a base image of sonarsource/sonar-scanner-cli that is hosted on your own registry'
