@@ -7,6 +7,9 @@ branding:
 runs:
   using: 'composite'
   steps:
+    - name: List directory contents
+      run: ls -la
+      shell: bash
     - name: Build Docker Image
       run: docker build --build-arg INPUT_BASEIMAGE=${{ inputs.baseImage }} -t custom-image -f $GITHUB_WORKSPACE/Dockerfile $GITHUB_WORKSPACE
       shell: bash
