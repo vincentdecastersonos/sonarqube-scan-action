@@ -32,7 +32,7 @@ fi
 
 unset JAVA_HOME
 echo "current dir"
-ls -la
+ls -la ./workspace
 
 echo "sonarscan action -Dsonar.projectBaseDir=${INPUT_PROJECTBASEDIR} ${INPUT_ARGS}"
 sonar-scanner -Dsonar.projectBaseDir=${INPUT_PROJECTBASEDIR} ${INPUT_ARGS}
