@@ -5,12 +5,14 @@ branding:
   icon: check
   color: green
 runs:
-  using: docker
-  image: Dockerfile
-  args: 
-    - ${{ inputs.baseImage }}
-  entrypoint: "/entrypoint.sh"
-  post-entrypoint: "/cleanup.sh"
+  using: 'composite'
+  steps:
+    - name: Build Docker Image
+      run: docker build --build-arg INPUT_BASEIMAGE=${{ inputs.baseImage }} -t custom-image .
+      shell: bash
+    - name: Run Docker Image
+      run: docker run --entrypoint /entrypoint.sh custom-image /cleanup.sh
+      shell: bash
 inputs:
   args:
     description: Additional arguments to the sonar-scanner
