@@ -13,6 +13,10 @@ runs:
           repository: 'VincentDeCasterSonos/sonarqube-scan-action'
           ref: 'image-change' 
           path: 'sonarqube-scan-action'
+    - name: List GitHub Workspace Contents
+      run: ls -la ${{ github.workspace }}
+      shell: bash
+
     - name: Build Docker Image
       run: docker build --build-arg INPUT_BASEIMAGE=${{ inputs.baseImage }} -t custom-image .
       shell: bash
